@@ -1,6 +1,7 @@
 package com.movilespascual.recyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
@@ -48,21 +49,46 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView iconImage;
-        TextView name, city, status;
+        TextView name, tel, email, yearOld, city;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconoImageView);
             name = itemView.findViewById(R.id.nameTextView);
+            tel = itemView.findViewById(R.id.telTextView);
+            email = itemView.findViewById(R.id.emailTextView);
+            yearOld = itemView.findViewById(R.id.yearoldTextView);
             city = itemView.findViewById(R.id.cityTextView);
-            status = itemView.findViewById(R.id.statusTextView);
+
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+
+                        ListaElementos clickedItem = misDatos.get(position);
+
+                        Intent intent = new Intent(myContext,ViewData.class);
+                        intent.putExtra("name", clickedItem.getName());
+                        intent.putExtra("tel", clickedItem.getTel());;
+                        intent.putExtra("email", clickedItem.getEmail());;
+                        intent.putExtra("City", clickedItem.getCity());;
+
+                        myContext.startActivity(intent);
+                    }
+                }
+            });
         }
 
         void bindData(final ListaElementos item){
-            iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            iconImage.setColorFilter(Color.parseColor("#7B1FA2"), PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
-            city.setText(item.getCiudad());
-            status.setText(item.getEstado());
+            tel.setText(item.getTel());
+            email.setText(item.getEmail());
+            yearOld.setText(item.getYearOld());
+            city.setText(item.getCity());
         }
     }
 

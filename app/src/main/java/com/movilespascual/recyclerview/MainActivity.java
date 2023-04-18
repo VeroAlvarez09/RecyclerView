@@ -24,8 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void  init(){
         elementos = new ArrayList<>();
-        //elementos.add(new ListaElementos("#7B1FA2","Pedro","Ciudad de México","Activo"));
-        
+        elementos.add(new ListaElementos("Alexander","109398","mail.com","12","MDE"));
+        elementos.add(new ListaElementos("Alexander","109398","mail.com","12","MDE"));
+        elementos.add(new ListaElementos("Alexander","109398","mail.com","12","MDE"));
+        elementos.add(new ListaElementos("Alexander","109398","mail.com","12","MDE"));
+
 
         ListAdapter listAdapter = new ListAdapter(elementos,this);
         RecyclerView recyclerView = findViewById(R.id.listRecyclerView);
